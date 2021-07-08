@@ -1,0 +1,239 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    <style>
+* {
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
+}
+    nav{
+    flex: 1;
+}
+nav ul{
+    display: inline-block;
+    list-style-type: none;
+}
+
+nav li{
+    display: inline-block;
+    }
+.roll {
+    width: 90%;
+    background-color: #fff;
+    border-radius: 10px;
+    margin-left: 0px;
+    padding: 60px;
+    margin: 40px 5px;
+    padding-right: 80px;
+    box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: transform 0.5s;
+    display: table;
+
+    }
+.roll a:hover{
+    color: #ff523b;
+.roll .coll {
+    display: table-cell;
+    vertical-align: top;
+
+}
+.roll .coll img{
+    z-index: 10;
+    border-radius: 3px 0px 0px 3px;
+    width: 71px;
+    height: 20px;
+    margin-left: 0px;
+    margin-top: 0px;
+    column-fill: balance;
+}
+
+
+}
+header {
+  text-align: left;
+  font-size: 40px;
+  color: rgb(6, 2, 54);
+}
+.top-row {
+  background: rgb(12, 17, 34);
+  color: #fff;
+  width: 100%;
+  height: 190px;
+  padding: none;
+  margin: none;
+  vertical-align: top;
+}
+.top-row .uj img {
+    width: 70px;
+}
+.top-row .logo img {
+    width: 250px;
+    height: 70px;
+    padding: 0px;
+}
+.top-row h6 {
+    padding-left: 10px;
+}
+.top-row a {
+    float: right;
+}
+h2 {
+
+}
+body {
+  font-family: "Roboto", sans-serif;
+  background-color: #e4e4e4;
+}
+.footer {
+    width: 100%;
+  text-align: center;
+}
+.footer a {
+  text-decoration: none;
+  color: #fff;
+}
+.footer-col-4 {
+  text-decoration: none;
+  background-color: rgb(12, 17, 34);
+  padding: 10px;
+  color: #fff;
+}
+small{
+  padding: 60px 20px ;
+  margin: 40px 20px;
+  color: darkgrey;
+  font-size: 9px;
+}
+hr {
+  border-color: #ff523b;
+  stroke: #ff523b;
+}
+.footer p {
+  background-color: rgb(255, 187, 0);
+  color: #fff;
+}
+.search #myInput::placeholder {
+    color: darkgrey;
+  font-size: 20px;
+  text-align: center;
+}
+.search {
+    padding-top: 20px;
+    width: 50%;
+}
+.search #myInput{
+    padding-left: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+}
+.search #myInput:hover {
+  border-color: #ff523b;
+}
+#myUL{
+  /* Remove default list styling */
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.small-container{
+  max-width: 1080px;
+  margin: auto;
+  padding-left: 25px;
+  padding-right: 25px;
+}
+.small-container h2{
+  padding-left: 40px;
+  font-size: 30px;
+}
+.upload{
+    padding-left: 40px;
+    margin-left: 40px;
+    padding-bottom: 20px;
+}
+
+    </style>
+
+</head>
+<body>
+
+    <div class="top-row">
+        <a href="{% url 'home' %}" class="btn btn-primary">Home</a>
+        <div class="uj"><img src="{% static 'images/unijo-logo_0.png' %}" alt="pdfconnect" style="padding-left: 20px; padding-top: 10px;"></div>
+        <div class="logo"><img src="{% static 'images/pdfconnect.png' %}" alt="pdfconnect" style="height: 80px;"></div>
+                <h6>Browse and Download University of Jos pdf and other Books</h6>
+            </div>
+
+    </div>
+
+    <center>
+        <div class="search">
+            <form class="" method="POST" action="{% url 'search' %}">
+                {% csrf_token %}
+                <input type="text" id="myInput" onkeyup="myFunction()" name="searched" placeholder="Search files...">
+                <button type="submit" class="btn btn-primary">Search</button>
+            </form>
+        </div>
+    </center>
+    <div class="row">
+      <div class="col s7 push-s5"><span class="flow-text"></span></div>
+      <div class="col s5 pull-s7"><span class="flow-text"></span></div>
+        <div class="col s3">
+        <!-- Grey navigation panel -->
+        </div>
+
+        <div class="col s9">
+        <!-- Teal page content  -->
+        </div>
+    </div>
+    <ul id="myUL"></ul>
+
+{% block content %}
+{% endblock %}
+     <div class="pagination">
+            <span class="step-links">
+                {% if books.has_previous %}
+                    <a href="?page=1">&laquo; first</a>
+                    <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+                {% endif %}
+
+                <span class="current">
+                    Page {{ books.number }} of {{ books.paginator.num_pages }}.
+                </span>
+
+                {% if books.has_next %}
+                    <a href="?page={{ books.next_page_number }}">next</a>
+                    <a href="?page={{ books.paginator.num_pages }}">last &raquo;</a>
+                {% endif %}
+            </span>
+        </div>
+    </div>
+
+<!----Footer-->
+    <div class="footer">
+        <div class="container">
+            <div class="foot-row">
+                <div class="footer-col-4">
+                    <img src="C:\Users\hp\Desktop\Images\unijo-logo_0.png" alt="">
+                    <h3>Follow Unijos:</h3>
+                        <a href="">Facebook</a><br>
+                        <a href="">Twitter</a><br>
+                        <a href="">Instagram</a><br>
+                        <a href="">YouTube</a><br>
+                        <a href="https://www.unijos.edu.ng/">Unijos Official Site</a>
+                    <br>
+                    <hr>
+                        <small>Mordecai Gaza - Development</small>
+                </div>
+            </div>
+            <hr>
+            <p class="copyright">copyright 2021</p>
+        </div>
+    </div>
+</body>
+</html>
