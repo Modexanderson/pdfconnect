@@ -16,7 +16,7 @@ SECRET_KEY = 'django-insecure-&+zlinrahb-qqs(!l=yb0b$%)ud@erq-ipe2x((yo)ml)1e97a
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'pdfsconnect.herokuapp.com'
+    'pdf-connect.herokuapp.com'
 ]
 
 
