@@ -1,0 +1,104 @@
+{% extends 'base.html' %} {% block content %}
+
+<style>
+  .card {
+    padding-top: 40;
+    padding-left: 5;
+  }
+</style>
+
+<div class="column">
+  <div class="card">
+    <a href="{% url 'agriculture' %}"> Faculty of Agriculture</a>
+  </div>
+</div>
+
+<div class="column">
+  <div class="card"><a href="{% url 'art' %}"> Faculty of Arts</a></div>
+</div>
+
+<div class="column">
+  <div class="card">
+    <a href="{% url 'basicmedicalsciences' %}">
+      Faculty of Basic Medical Sciences</a
+    >
+  </div>
+</div>
+
+<div class="column">
+  <div class="card">
+    <a href="{% url 'clinicalsciences' %}"> Faculty of Clinincal Sciences</a>
+  </div>
+</div>
+
+<div class="column">
+  <div class="card">
+    <a href="{% url 'dentalsciences' %}"> Faculty of Dental Sciences</a>
+  </div>
+</div>
+
+<div class="column">
+  <div class="card">
+    <a href="{% url 'education' %}"> Faculty of Education</a>
+  </div>
+</div>
+
+<div class="column">
+  <div class="card">
+    <a href="{% url 'engineering' %}"> Faculty of Engineering</a>
+  </div>
+</div>
+
+<div class="column">
+  <div class="card">
+    <a href="{% url 'enviromentalsciences' %}">
+      Faculty of Enviromental Sciences</a
+    >
+  </div>
+</div>
+
+<div class="column">
+  <div class="card">
+    <a href="{% url 'healthsciencesandtechnology' %}">
+      Faculty of Health Sciences And Technology</a
+    >
+  </div>
+</div>
+
+<div class="column">
+  <div class="card"><a href="{% url 'law' %}"> Faculty of Law</a></div>
+</div>
+
+<div class="column">
+  <div class="card">
+    <a href="{% url 'managementsciences' %}"> Faculty of Management Sciences</a>
+  </div>
+</div>
+
+<div class="column">
+  <div class="card">
+    <a href="{% url 'naturalsciences' %}"> Faculty of Natural Sciences</a>
+  </div>
+</div>
+
+<div class="column">
+  <div class="card">
+    <a href="{% url 'pharmaceuticalsciences' %}">
+      Faculty of Pharmaceutical Sciences</a
+    >
+  </div>
+</div>
+
+<div class="column">
+  <div class="card">
+    <a href="{% url 'socialsciences' %}"> Faculty of Social Sciences</a>
+  </div>
+</div>
+
+<div class="column">
+  <div class="card">
+    <a href="{% url 'veterinarymedicine' %}"> Faculty of Veterinary Medicine</a>
+  </div>
+</div>
+
+{% endblock %}

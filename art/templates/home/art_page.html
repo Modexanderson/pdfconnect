@@ -1,0 +1,67 @@
+{% extends 'base.html' %} {% block content %} {% block content_header %}
+<center>
+  <div class="search">
+    <form method="POST" action="{% url 'art-search-books' %}">
+      {% csrf_token %}
+      <input
+        type="text"
+        id="myInput"
+        onkeyup="myFunction()"
+        name="search"
+        placeholder="Search Books..."
+      />
+      <button type="submit" class="btn">Search</button>
+    </form>
+  </div>
+</center>
+<h2>Art Books</h2>
+<p>
+  <a href="{% url 'art-upload' %}" class="btn">Upload book</a>
+</p>
+{% endblock %}
+<div class="row">
+  {% for book in object_list %}
+    <div class="column">
+      <div class="card">
+        <div class="file-left">
+          {% if book.cover %}
+          <a>
+            <img
+              class="img-zoom file-img"
+              src="{{ book.cover.url }}"
+              alt="{{ book.title }}"
+              style="width: 100px"
+            />
+            {% else %}
+            <span class="text-muted">No cover</span>
+            {% endif %}
+          </a>
+        </div>
+        <div class="file-right">
+          <h6 style="margin: 0; display: inline">{{ book.title }}</h6>
+          &nbsp; &nbsp; &nbsp;
+          <h6 style="margin: 0; display: inline; text-align: right">
+            <small style="margin: -20"> Author:</small> {{ book.author }}
+          </h6>
+          <div class="file-info">
+            <p>{{ book.description}}</p>
+          </div>
+        </div>
+        <div class="file-download">
+          <a
+            href="{{ book.pdf.url }}"
+            class="btn btn-primary btn-sm"
+            target="_blank"
+          >
+            Download PDF
+          </a>
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+</div>
+<p>
+  <a href="{% url 'art-upload' %}" class="btn">Upload book</a>
+</p>
+
+{% endblock %}

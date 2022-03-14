@@ -1,0 +1,333 @@
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>PDF Connect</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    <style>
+        * {
+            font-family: "Comic Sans MS", "Comic Sans", cursive;
+        }
+
+        nav {
+            flex: 1;
+        }
+
+        nav ul {
+            display: inline-block;
+            list-style-type: none;
+        }
+
+        nav li {
+            display: inline-block;
+        }
+
+
+        .row {
+            width: 100%;
+            margin: -5 -5px;
+
+            display: table;
+
+        }
+
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        .card {
+            width: 70%;
+            display: flow-root;
+            position: relative;
+            margin: 10px;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            /* this adds the "card" effect */
+            /* text-align: center; */
+            background-color: #f1f1f1;
+            height: 100px;
+        }
+
+
+        .row .column img {
+            padding: 0px;
+            display: table;
+            width: 100%;
+            height: 100px;
+            object-fit: cover;
+        }
+
+        .row .column h2 {
+            font-size: 20;
+        }
+
+        .file-left {
+            float: left;
+            margin-right: 5px;
+            position: relative;
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+            background-color: transparent;
+            -webkit-text-decoration-skip: objects;
+        }
+
+        .row a:hover {
+            color: #ff523b;
+        }
+
+        .file-img {
+            position: absolute;
+            z-index: 10;
+            width: 71px;
+            height: 98px;
+            border-radius: 3px 0 0 3px;
+        }
+
+        .file-right {
+            /* float: right; */
+            text-decoration: none;
+            display: inline;
+            margin-left: 60;
+            padding: 0 3px 0 85px;
+            overflow: hidden;
+            height: 97px;
+            line-height: auto;
+            color: black;
+            font-weight: 100;
+            font-size: 13px;
+            word-break: break-word;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            text-overflow: ellipsis;
+            -webkit-line-clamp: 2;
+        }
+
+        .file-info {
+            margin-left: -85;
+            padding: 0 0 0 85px;
+            font-size: 13px;
+            font-weight: 100;
+            letter-spacing: 0;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            -webkit-line-clamp: 2;
+        }
+
+        .file-download {
+            margin-top: -90;
+            float: right;
+        }
+
+        h5 small {
+            font-size: 16;
+        }
+
+        h2 {
+            display: block;
+            font-size: 1.5em;
+            margin-block-start: 0.83em;
+            margin-block-end: 0.83em;
+            margin-inline-start: 0px;
+            margin-inline-end: 0px;
+            font-weight: bold;
+        }
+
+
+        div {
+            display: block;
+        }
+
+        header {
+            text-align: left;
+            font-size: 40px;
+            color: rgb(6, 2, 54);
+        }
+
+        .top-row {
+            background: rgb(12, 17, 34);
+            color: #fff;
+            width: 100%;
+            height: 190px;
+            padding: none;
+            margin: none;
+            vertical-align: top;
+        }
+
+        .top-row .uj img {
+            width: 70px;
+        }
+
+        .top-row .logo img {
+            width: 250px;
+            height: 70px;
+            padding: 0px;
+        }
+
+        .top-row h6 {
+            padding-left: 10px;
+        }
+
+        .top-row a {
+            float: right;
+        }
+
+        body {
+            font-family: "Roboto", sans-serif;
+            background-color: #e4e4e4;
+        }
+
+        .footer {
+            width: 100%;
+            text-align: center;
+        }
+
+        .footer a {
+            text-decoration: none;
+            color: #fff;
+        }
+
+        .footer-col-4 {
+            text-decoration: none;
+            background-color: rgb(12, 17, 34);
+            padding: 10px;
+            color: #fff;
+        }
+
+        small {
+            padding: 60px 20px;
+            margin: 40px 20px;
+            color: darkgrey;
+            font-size: 9px;
+        }
+
+        hr {
+            border-color: #ff523b;
+            stroke: #ff523b;
+        }
+
+        .footer p {
+            background-color: rgb(255, 187, 0);
+            color: #fff;
+        }
+
+        .btn {
+            background-color: rgb(12, 17, 34);
+
+        }
+
+        .search #myInput::placeholder {
+            color: darkgrey;
+            font-size: 20px;
+            text-align: center;
+        }
+
+        .search {
+            padding-top: 20px;
+            width: 50%;
+        }
+
+        .search #myInput {
+            padding-left: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+        }
+
+        .search #myInput:hover {
+            border-color: #ff523b;
+        }
+
+        #myUL {
+            /* Remove default list styling */
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .small-container {
+            max-width: 1080px;
+            margin: auto;
+            padding-left: 25px;
+            padding-right: 25px;
+        }
+
+        .small-container h2 {
+            padding-left: 40px;
+            font-size: 30px;
+        }
+
+        .upload {
+            padding-left: 40px;
+            margin-left: 40px;
+            padding-bottom: 20px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="top-row">
+        <a href="{% url 'home' %}" class="btn btn-primary">Home</a>
+
+        <div class="uj">
+            <img src="{% static 'images/unijo-logo_0.png' %}" alt="pdfconnect"
+                style="padding-left: 20px; padding-top: 10px;">
+        </div>
+        <div class="logo"><img src="{% static 'images/pdfconnect.png' %}" alt="pdfconnect" style="height: 80px;">
+
+        </div>
+        <h6>Browse and Download University of Jos pdfs, slides, documents and Books...</h6>
+    </div>
+
+    </div>
+
+    {% block content %}
+    {% endblock %}
+    <div class="pagination">
+        <span class="step-links">
+            {% if books.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+            {% endif %}
+
+            <span class="current">
+                Page {{ books.number }} of {{ books.paginator.num_pages }}.
+            </span>
+
+            {% if books.has_next %}
+            <a href="?page={{ books.next_page_number }}">next</a>
+            <a href="?page={{ books.paginator.num_pages }}">last &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
+    </div>
+
+    <!----Footer-->
+    <div class="footer">
+        <div class="footer-col-4">
+            <h3>PDF Connect:</h3>
+            <a href="#">About</a> &nbsp; &nbsp;
+
+            <a href="#">Mobile App</a>&nbsp; &nbsp;
+
+            <a href="https://unijos.edu.ng">Unijos Official Site</a> &nbsp; &nbsp;
+
+            <hr />
+            <small>Mordecai Gaza - Development</small>
+            <a href=" https://wa.me/2348173227654">Contact Us</a>
+        </div>
+        <hr>
+        <p class="copyright">copyright 2021</p>
+    </div>
+</body>
+
+</html>

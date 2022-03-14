@@ -1,0 +1,51 @@
+{% extends 'base.html' %} {% block content %} {% block content_header %}
+<h2>Veterinary Medicine Books</h2>
+{% endblock %} {% if search %}
+<h6>You searched for {{ search }}</h6>
+<br />
+
+<div class="row">
+  {% for book in books %}
+  <div class="column">
+    <div class="card">
+      <div class="file-left">
+        {% if book.cover %}
+        <a>
+          <img
+            class="img-zoom file-img"
+            src="{{ book.cover.url }}"
+            alt="{{ book.title }}"
+            style="width: 100px"
+          />
+          {% else %}
+          <span class="text-muted">No cover</span>
+          {% endif %}
+        </a>
+      </div>
+      <div class="file-right">
+        <h6 style="margin: 0; display: inline">{{ book.title }}</h6>
+        &nbsp; &nbsp; &nbsp;
+        <h6 style="margin: 0; display: inline; text-align: right">
+          <small style="margin: -20"> Author:</small> {{ book.author }}
+        </h6>
+        <div class="file-info">
+          <p>{{ book.description}}</p>
+        </div>
+      </div>
+      <div class="file-download">
+        <a
+          href="{{ book.pdf.url }}"
+          class="btn btn-primary btn-sm"
+          target="_blank"
+        >
+          Download PDF
+        </a>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+{% else %}
+<h6>You forgot to search for a book...</h6>
+{% endif %} {% endblock %}
