@@ -1,1 +1,1 @@
-web: gunicorn pdfconnect.wsgi
+web: gunicorn pdfs.wsgi
