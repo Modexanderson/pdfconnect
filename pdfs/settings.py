@@ -15,7 +15,9 @@ SECRET_KEY = 'django-insecure-&+zlinrahb-qqs(!l=yb0b$%)ud@erq-ipe2x((yo)ml)1e97a
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'pdfsconnect.herokuapp.com'
+]
 
 
 # Application definition
