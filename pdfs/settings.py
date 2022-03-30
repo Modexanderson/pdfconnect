@@ -16,7 +16,7 @@ SECRET_KEY = 'django-insecure-&+zlinrahb-qqs(!l=yb0b$%)ud@erq-ipe2x((yo)ml)1e97a
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'pdf-connect.herokuapp.com'
+    # 'pdf-connect.herokuapp.com'
 ]
 
 
@@ -32,6 +32,7 @@ INSTALLED_APPS = [
 
 
     'crispy_forms',
+    'storages',
 
 
     # Third_party apps
@@ -96,6 +97,9 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+import dj_database_url
+db_from_env =  dj_database_url.config(conn_max_age=600)
+DATABASES['default'].update(db_from_env)
 
 
 # Password validation
@@ -137,11 +141,12 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 STATICFILES_DIRS = [
-    BASE_DIR / "static" / 'static/images/',
-]
+    os.path.join(BASE_DIR, 'static'),
+    ]
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
@@ -150,3 +155,14 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MEDIA_ROOT = (BASE_DIR / 'media')
 
 MEDIA_URL = '/media/'
+
+# S3 BUCKET CONFIG
+
+AWS_ACCES_KEY_ID = 'AKIASFBD5KQVPTHF2MNE'
+AWS_SECRET_ACCESS_KEY = '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'
+AWS_STORAGE_BUCKET_NAME = 'pdf-connect-bucket'
+
+AWS_S3_FILE_OVERWRITE = False
+AWS_DEFAULT_ACL = None
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3Boto3Storage'
+STATICFILES_STORAGES = 'storages.backends.s3boto.S3Boto3Storage'
