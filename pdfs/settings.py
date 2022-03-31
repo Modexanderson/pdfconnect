@@ -166,7 +166,7 @@ if USE_S3:
     AWS_SECRET_ACCESS_KEY = 'mlw5DXkAkxMSVJBYV6dsqkqqpX4uvAPpyyF488Th'
     AWS_STORAGE_BUCKET_NAME = 'pdf-connect-bucket'
     AWS_DEFAULT_ACL = None
-    AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
+    AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
     AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400'}
     # s3 static settings
     AWS_LOCATION = 'static'
