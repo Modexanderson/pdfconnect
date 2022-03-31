@@ -13,7 +13,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-&+zlinrahb-qqs(!l=yb0b$%)ud@erq-ipe2x((yo)ml)1e97a'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [
     'pdf-connect.herokuapp.com'
@@ -158,11 +158,29 @@ MEDIA_URL = '/media/'
 
 # S3 BUCKET CONFIG
 
-AWS_ACCES_KEY_ID = 'AKIASFBD5KQVPTHF2MNE'
-AWS_SECRET_ACCESS_KEY = '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'
-AWS_STORAGE_BUCKET_NAME = 'pdf-connect-bucket'
+USE_S3 = True
 
-AWS_S3_FILE_OVERWRITE = False
-AWS_DEFAULT_ACL = None
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-STATICFILES_STORAGE = 'storages.backends.s3boto3.S3StaticStorage'
+if USE_S3:
+    # aws settings
+    AWS_ACCESS_KEY_ID = 'AKIASFBD5KQVPTHF2MNE'
+    AWS_SECRET_ACCESS_KEY = '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'
+    AWS_STORAGE_BUCKET_NAME = 'pdf-connect-bucket'
+    AWS_DEFAULT_ACL = None
+    AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
+    AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400'}
+    # s3 static settings
+    AWS_LOCATION = 'static'
+    STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{AWS_LOCATION}/'
+    STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+else:
+    STATIC_URL = '/staticfiles/'
+    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+# AWS_ACCES_KEY_ID = 'AKIASFBD5KQVPTHF2MNE'
+# AWS_SECRET_ACCESS_KEY = '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'
+# AWS_STORAGE_BUCKET_NAME = 'pdf-connect-bucket'
+
+# AWS_S3_FILE_OVERWRITE = False
+# AWS_DEFAULT_ACL = None
+# DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+# STATICFILES_STORAGE = 'storages.backends.s3boto3.S3StaticStorage'
